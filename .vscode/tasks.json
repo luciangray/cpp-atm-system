@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile and run active C/C++ file",
+            "type": "shell",
+            "command": "if [ \"${fileExtname}\" = \".c\" ]; then gcc -g \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && \"${fileDirname}/${fileBasenameNoExtension}\"; elif [ \"${fileExtname}\" = \".cpp\" ] || [ \"${fileExtname}\" = \".cc\" ] || [ \"${fileExtname}\" = \".cxx\" ]; then g++ -g \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && \"${fileDirname}/${fileBasenameNoExtension}\"; else echo \"Not a C/C++ file\"; fi",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            }
+        }
+    ]
+}
