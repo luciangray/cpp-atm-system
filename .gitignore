@@ -1,0 +1,4 @@
+/build*/
+/output/
+*.tmp
+data/atm_data.txt

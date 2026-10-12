@@ -2,23 +2,45 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "compile and run active C/C++ file",
-            "type": "shell",
-            "command": "if [ \"${fileExtname}\" = \".c\" ]; then gcc -g \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && \"${fileDirname}/${fileBasenameNoExtension}\"; elif [ \"${fileExtname}\" = \".cpp\" ] || [ \"${fileExtname}\" = \".cc\" ] || [ \"${fileExtname}\" = \".cxx\" ]; then g++ -g \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}\" && \"${fileDirname}/${fileBasenameNoExtension}\"; else echo \"Not a C/C++ file\"; fi",
-            "options": {
-                "cwd": "${fileDirname}"
-            },
+            "label": "ATM: 配置项目",
+            "type": "process",
+            "command": "cmake",
+            "args": ["-S", "${workspaceFolder}", "-B", "${workspaceFolder}/build", "-DCMAKE_BUILD_TYPE=Debug"],
+            "problemMatcher": []
+        },
+        {
+            "label": "ATM: 编译项目",
+            "type": "process",
+            "command": "cmake",
+            "args": ["--build", "${workspaceFolder}/build", "-j", "4"],
+            "dependsOn": "ATM: 配置项目",
             "problemMatcher": ["$gcc"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared"
-            }
+            "group": {"kind": "build", "isDefault": true}
+        },
+        {
+            "label": "ATM: 运行图形界面",
+            "type": "process",
+            "command": "${workspaceFolder}/build/atm_gui",
+            "options": {"cwd": "${workspaceFolder}"},
+            "dependsOn": "ATM: 编译项目",
+            "problemMatcher": []
+        },
+        {
+            "label": "ATM: 运行控制台",
+            "type": "process",
+            "command": "${workspaceFolder}/build/atm_console",
+            "options": {"cwd": "${workspaceFolder}"},
+            "dependsOn": "ATM: 编译项目",
+            "presentation": {"reveal": "always", "focus": true},
+            "problemMatcher": []
+        },
+        {
+            "label": "ATM: 运行测试",
+            "type": "process",
+            "command": "ctest",
+            "args": ["--test-dir", "${workspaceFolder}/build", "--output-on-failure"],
+            "dependsOn": "ATM: 编译项目",
+            "problemMatcher": []
         }
     ]
 }

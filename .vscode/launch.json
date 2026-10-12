@@ -2,32 +2,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C active file",
+            "name": "ATM: 调试图形界面",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/build/atm_gui",
             "args": [],
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
             "miDebuggerPath": "/usr/bin/gdb",
-            "preLaunchTask": "build C active file"
+            "preLaunchTask": "ATM: 编译项目"
         },
         {
-            "name": "Debug C++ active file",
+            "name": "ATM: 调试控制台",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/build/atm_console",
             "args": [],
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
             "miDebuggerPath": "/usr/bin/gdb",
-            "preLaunchTask": "build C++ active file"
+            "preLaunchTask": "ATM: 编译项目"
         }
     ]
 }
