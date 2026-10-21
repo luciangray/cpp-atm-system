@@ -37,7 +37,7 @@ cmake --build build -j 4
 cp data/demo_data.txt data/atm_data.txt
 ```
 
-也可以通过 `--data 文件路径` 使用独立数据。数据文件由程序维护，不建议手工修改；密码以文本保存，仅用于本地课程演示。
+也可以通过 `--data 文件路径` 使用独立数据。
 
 ## 主要代码
 
@@ -62,4 +62,3 @@ VS Code 通过 WSL 打开项目，在 WSL 中安装 Microsoft C/C++ 扩展。`Ct
 ctest --test-dir build --output-on-failure
 ```
 
-`tests/` 包含核心业务、控制台和 Qt 界面测试，使用临时数据文件。

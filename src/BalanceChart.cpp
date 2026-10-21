@@ -80,6 +80,7 @@ void BalanceChart::paintEvent(QPaintEvent* event) {
         fill.setColorAt(1, QColor(39, 125, 149, 0));
         painter.fillPath(area, fill);
     }
+    painter.setBrush(Qt::NoBrush);
     painter.setPen(QPen(QColor("#277d95"), 2.5));
     painter.drawPath(line);
     painter.setBrush(QColor("#277d95"));
