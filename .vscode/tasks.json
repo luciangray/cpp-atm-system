@@ -5,7 +5,7 @@
             "label": "ATM: 配置项目",
             "type": "process",
             "command": "cmake",
-            "args": ["-S", "${workspaceFolder}", "-B", "${workspaceFolder}/build", "-DCMAKE_BUILD_TYPE=Debug"],
+            "args": ["-S", "${workspaceFolder}", "-B", "${workspaceFolder}/build", "-DCMAKE_BUILD_TYPE=Debug", "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"],
             "problemMatcher": []
         },
         {

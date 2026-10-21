@@ -31,13 +31,10 @@ void start_screen(bool interactive) {
         alternate_screen_active = 1;
         std::signal(SIGINT, handle_interrupt);
         std::signal(SIGTERM, handle_interrupt);
-        // 备用屏幕独立于命令行历史，退出时恢复启动前的画面。
         std::cout << "\033[?1049h" << std::flush;
     }
 }
 
-// VS Code / WSL 终端支持这两个控制序列：清屏、将光标移到左上角。
-// 输出重定向到文件或管道时不清屏，方便查看日志和自动测试。
 void clear_screen(bool interactive) {
     if (interactive) {
         std::cout << "\033[2J\033[H";

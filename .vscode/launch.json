@@ -2,26 +2,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ATM: 调试图形界面",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/build/atm_gui",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            "stopAtEntry": false,
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "preLaunchTask": "ATM: 编译项目"
-        },
-        {
-            "name": "ATM: 调试控制台",
+            "name": "ATM - GDB Source Debug",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/atm_console",
-            "args": [],
+            "args": [
+                "--data",
+                "${workspaceFolder}/build/debug-session/accounts.txt"
+            ],
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
-            "stopAtEntry": false,
+            "environment": [
+                {
+                    "name": "TERM",
+                    "value": "dumb"
+                }
+            ],
             "externalConsole": false,
             "MIMode": "gdb",
             "miDebuggerPath": "/usr/bin/gdb",

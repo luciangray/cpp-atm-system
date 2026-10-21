@@ -3,7 +3,6 @@
 #include <QMessageBox>
 
 int main(int argc, char* argv[]) {
-    // 本项目在 WSLg 中演示，使用已验证的 X11 窗口后端。
     if (qEnvironmentVariableIsSet("WSL_DISTRO_NAME") && qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")) {
         qputenv("QT_QPA_PLATFORM", "xcb");
     }

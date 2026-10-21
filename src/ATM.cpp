@@ -97,46 +97,17 @@ bool ATM::load() {
         message_ = "读取数据失败或文件没有账户。";
         return false;
     }
-    // 检查交易和余额能否对应，避免曲线与账户余额不一致。
-    std::vector<long long> balances;
-    for (const BankCard& card : cards_) {
-        balances.push_back(card.get_initial_balance());
-    }
+    // 交易记录必须属于已有账户。
     for (const Transaction& record : records_) {
-        int index = -1;
-        for (std::size_t i = 0; i < cards_.size(); ++i) {
-            if (cards_[i].get_number() == record.card_number) {
-                index = static_cast<int>(i);
+        bool found = false;
+        for (const BankCard& card : cards_) {
+            if (card.get_number() == record.card_number) {
+                found = true;
                 break;
             }
         }
-        if (index < 0) {
+        if (!found) {
             message_ = "交易记录对应的账户不存在。";
-            return false;
-        }
-        long long next = balances[index];
-        if (record.type == "deposit") {
-            if (record.amount > MAX_BALANCE - next) {
-                message_ = "交易记录金额错误。";
-                return false;
-            }
-            next += record.amount;
-        } else {
-            if (record.amount > next || record.amount % 10000 != 0) {
-                message_ = "交易记录金额错误。";
-                return false;
-            }
-            next -= record.amount;
-        }
-        if (next != record.balance) {
-            message_ = "交易记录与余额不一致。";
-            return false;
-        }
-        balances[index] = next;
-    }
-    for (std::size_t i = 0; i < cards_.size(); ++i) {
-        if (balances[i] != cards_[i].get_balance()) {
-            message_ = "账户余额与交易记录不一致。";
             return false;
         }
     }

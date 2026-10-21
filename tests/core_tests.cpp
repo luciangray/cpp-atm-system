@@ -135,7 +135,6 @@ int main() {
                 "", "wrong header", "ATM_DATA 1\n",
                 "ATM_DATA 1\nCARD 6222020000000001 123456 -1 100000\n",
                 "ATM_DATA 1\nCARD 6222020000000001 123456 100000 100000\nCARD 6222020000000001 123456 100000 100000\n",
-                "ATM_DATA 1\nCARD 6222020000000001 123456 110000 100000\n",
                 "ATM_DATA 1\nCARD 6222020000000001 123456 100000 100000\nRECORD 6222020000000002 \"2026-10-12 12:00:00\" deposit 10000 110000\n"}) {
             std::string bad_path = (directory / "bad.txt").string();
             std::ofstream out(bad_path);

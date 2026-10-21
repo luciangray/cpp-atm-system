@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <vector>
 
-// QWidget 提供虚函数 paintEvent，Qt 在窗口重绘时调用我们的实现。
 class BalanceChart : public QWidget {
 public:
     explicit BalanceChart(const std::vector<long long>& balances, QWidget* parent = nullptr);
